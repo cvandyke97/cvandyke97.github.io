@@ -40,6 +40,43 @@
         background: #f5f5f5;   
         font-family: Imprima, sans-serif;
     }
+    
+    h3 {
+        font-family: Dosis, sans-serif;
+        color: #003d71
+    }
+    p { 
+        font-size: .9em; 
+        color: #375671; 
+    }
+    ul {
+        list-style-type: none; 
+        font-size: .9em; 
+        color: #375671; 
+        line-height: 1.6em;
+    }
+    a, a:visited {   
+        color: #003d71;
+    }
+    .project {
+        width: 80%;
+        min-width: 800px;
+        height: 100%;
+        margin: 35px auto;
+    }
+    .project:after{
+        content: "";
+        display: table;
+        clear: both; 
+    }
+    .project-image {
+        width: 388px;
+        height: 240px;
+        background: white;
+        float: left;
+        margin-right: 20px;
+        border: 2px solid #dddddd;
+}
 
 </style>
 
@@ -53,8 +90,8 @@
     
 </header> 
 
-<section>
-    <a href = "maps/superfund_map.pdf"><img src="images/superfund_map1.jpg" alt="hexbin map of superfund sites"/></a>
+<section class="project">
+    <a href = "maps/superfund_map.pdf"><img src="images/superfund_map1.jpg" alt="hexbin map of superfund sites" class="project-image"/></a>
     <h3><a href= "maps/superfund_map.pdf">Superfund Sites in the U.S.</a></h3>
     <p>This map depicts the locations of sites in the Lower 48 appearing on the Environmental Protection Agency's National Priorities List (NPL). The NPL contains sites at which there are known or threatened releases of hazardous substances, pollutants, or other contaminants that are capable of endangering human health and the environment.</p>
     <p>QGIS was used to perform hexbin mapping.</p>
@@ -64,8 +101,8 @@
     </ul>
 </section>
     
-<section>
-    <a href = "https://phishaquarium.carto.com/viz/33c5e3ae-300c-11e6-bcb8-0e3ff518bd15/map"><img src="images/co2emissions_map2.jpg" alt="carbon dioxide emissions at u.s. power plants"/></a>
+<section class="project">
+    <a href = "https://phishaquarium.carto.com/viz/33c5e3ae-300c-11e6-bcb8-0e3ff518bd15/map"><img src="images/co2emissions_map2.jpg" alt="carbon dioxide emissions at u.s. power plants" class="project_image"/></a>
     <h3><a href= "https://phishaquarium.carto.com/viz/33c5e3ae-300c-11e6-bcb8-0e3ff518bd15/map">Carbon Dioxide Emissions from U.S. Power Plants</a></h3>
     <p>This map displays carbon dioxide emissions from U.S. power plants. When zoomed out, the map depicts CO2 emissions per square kilometer at the county level. Users can click on individual counties to view detailed emissions data. At larger scales, users can determine the level of emissions from individual facilities. </p>
     <p>Data were initally mapped in QGIS before they were exported to Carto for additional processing</p>
@@ -75,8 +112,8 @@
     </ul>    
 </section>
 
-<section>
-    <a href = "https://phishaquarium.carto.com/viz/33c5e3ae-300c-11e6-bcb8-0e3ff518bd15/map"><img src="images/co2emissions_map2.jpg" alt="carbon dioxide emissions at u.s. power plants"/></a>
+<section class="project">
+    <a href = "https://phishaquarium.carto.com/viz/33c5e3ae-300c-11e6-bcb8-0e3ff518bd15/map"><img src="images/co2emissions_map2.jpg" alt="carbon dioxide emissions at u.s. power plants" class="project_image"/></a>
     <h3><a href= "https://phishaquarium.carto.com/viz/33c5e3ae-300c-11e6-bcb8-0e3ff518bd15/map">Carbon Dioxide Emissions from U.S. Power Plants</a></h3>
     <p>This map displays carbon dioxide emissions from U.S. power plants. When zoomed out, the map depicts CO2 emissions per square kilometer at the county level. Users can click on individual counties to view detailed emissions data. At larger scales, users can determine the level of emissions from individual facilities. </p>
     <p>Data were initally mapped in QGIS before they were exported to Carto for additional processing</p>
