@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>Rillito River Channel Change</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Imprima' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+    
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+   
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #F2E7DC;
+            font-family: Imprima, sans-serif;
+            color: #0D0000;
+        }
+        header {
+            width: 100%;
+            margin: 0px auto 0px auto;
+            background: #F2E7DC;
+        }
+        h1 {
+            font-family: Dosis, sans-serif;
+            display: inline-block;
+            margin-left: 20px;
+            margin-right: 20px;
+            color: #001323;
+        }
+        h2 {
+            font-family: Dosis, sans-serif;
+            display: inline-block;
+            color: #001323;
+        }
+        #map {
+            width: 100%;
+            height: 640px;
+            margin: 0px auto 0px auto;
+            background: whitesmoke;
+            border: 2px solid #dddedf;
+        }
+        footer {
+            width: 80%;
+            margin: 10px auto 10px auto;
+        }
+        p {
+            font-size: 1em;
+            color: #001323;
+			text-align: justify;
+        }
+        #ui-controls {
+			width: 176px;
+			padding: 8px 15px 8px 15px;
+			background: rgba(75, 75, 75, 0.8);
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+			color: whitesmoke;
+		}
+		#ui-controls .min {
+			float: left;
+		}	
+		#ui-controls .max {
+			float: right;
+		}
+		.year-slider {
+			width: 100%;
+		}
+		label {
+			font-size: 1.1em;
+			font-weight: bold;
+		}
+    </style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>A River in Transition</h1>
+    <h2>Vegetation and Morphological Evolution of the Rillito River, 1983-2015</h2>
+</header>
+    
+    <div id="map"></div>
+
+<footer>
+    <p>Background on the Rillito River</p>
+    <p align = "justify">The Rillito River is an ephemeral dryland stream that stretches for approximately 10 miles across the northern fringes of Tucson, Arizona. Its origins lie at the confluence of Pantano Wash and Tanque Verde Creek. It empties into the Santa Cruz River just to the west of Interstate 10. The total watershed encompasses 935 square miles. Like many rivers in the Southwestern U.S., it underwent significant downcutting in the late-nineteenth century, a process that concluded by the early-1890s. Until the 1940s, the river had a braided planform, which gradually transitioned to a single-channel configuration by the mid-1960s following a period of low flows. Significant flooding in 1983 prompted the installation of soil cement along the Rillito's banks. Aerial photography suggests that in-channel vegetation was relatively sparse until the late-1990s and early-2000s, most likely because of drought and significant groundwater use. The rapid expansion of vegetation (e.g., cottonwood, willow, mesquite, various shurb species) and development of a well-defined inset floodplain over the past 20 years had probably been driven in part by a rebound in groundwater levels. In 2007, the Rillito experienced its flood of record. Vegetation removal was significant but ultimately patchy, and the channel was not reset to a predominately barren state. Since 2007, infilling of vegetation has continued apace, and by 2015 the river was characterized by a densely vegetated inset floodplain along much of its length, which encloses a narrow low-flow channel. </p>
+</footer>
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <script>
+
+    var map = L.map('map', {
+        center: [32.28, -110.95],
+        zoom: 12
+    });
+
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+    	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+    }).addTo(map);
+
+    var imageBounds = [[32.246, -111.073], [32.324, -110.846]];
+
+    var images = ['images/rillito96.png', 'images/rillito07.png','images/rillito10.png','images/rillito13.png','images/rillito15.png'];
+
+    var imagesLayerGroup = L.layerGroup();
+
+    var layersControlSource = {};
+
+    images.forEach(function(imageUrl) {
+
+          var imgOverlay = L.imageOverlay(imageUrl, imageBounds).addTo(imagesLayerGroup);
+
+          var layerName = imageUrl.slice(-13, -4);
+
+          layersControlSource[layerName] = imgOverlay;
+    });
+
+    L.control.layers({},layersControlSource).addTo(map);
+
+
+  </script>
+
+  </body>
+</html>

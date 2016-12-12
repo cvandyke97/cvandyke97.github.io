@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rillito River</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+          position: absolute;
+          width: 100%;
+          top: 0;
+          bottom: 0;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+  <script>
+
+    var map = L.map('map', {
+        center: [32.28, -110.95],
+        zoom: 12
+    });
+
+    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+    	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+    }).addTo(map);
+
+    var imageBounds = [[32.246, -111.073], [32.324, -110.846]];
+
+    var images = ['images/rillito07.png','images/rillito10.png','images/rillito13.png','images/rillito15.png'];
+
+    // create empty layerGroup to hold imageOverlays
+    var imagesLayerGroup = L.layerGroup();
+
+    // create empty object to hold
+    var layersControlSource = {};
+
+    // iterate through array of image paths
+    images.forEach(function(imageUrl) {
+
+          // create a a new L.imageOverlay with each image and add to
+          var imgOverlay = L.imageOverlay(imageUrl, imageBounds).addTo(imagesLayerGroup);
+
+          // get the file name without extension
+          var layerName = imageUrl.slice(-13, -4);
+
+          // create source object for layers control switcher
+          layersControlSource[layerName] = imgOverlay;
+    });
+
+    // add all layers to the layer control
+    L.control.layers({},layersControlSource).addTo(map);
+
+
+  </script>
+
+  </body>
+</html>
